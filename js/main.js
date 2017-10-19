@@ -175,7 +175,7 @@ $(window).load(function() {
 */
 function loadOneReference(index) {
 
-    var $referenceBuild = $('<div contenttoload="reference_' + index + '" id="reference_work_' + index + '" class="reference_work"> <div class="reference_work_title"><h1>Work <span>Nr.' + index + '</span></h1></div> <div class="reference_work_thumb"><div class="reference_work_description"></div></div> </div>');
+    var $referenceBuild = $('<div contenttoload="reference_' + index + '" id="reference_work_' + index + '" class="reference_work"> <div class="reference_work_title"><h1>Project <span>No.' + index + '</span></h1></div> <div class="reference_work_thumb"><div class="reference_work_description"></div></div> </div>');
 
     $referenceBuild.click(function (e) { //LOAD CONTENT AT CLICK
         $aChild = $(this);

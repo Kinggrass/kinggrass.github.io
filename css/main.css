@@ -57,7 +57,7 @@ h1 {
           left: 50%;
           right: 0;
           top: 100%;
-          background: #FF9933;
+          background: #33c0ff;
           height: 1px;
           animation: NAVIGATION_HALF_BORDER 2s forwards ease-in-out; }
         #wrapper > .section.a #header_bg header #navigation ul {
@@ -79,12 +79,12 @@ h1 {
             #wrapper > .section.a #header_bg header #navigation ul li:hover {
               background-color: #2d2d2d;
               box-shadow: inset 0 0 10px #000000;
-              color: #FF9933; }
+              color: #33c0ff; }
             #wrapper > .section.a #header_bg header #navigation ul li:active {
               transition: none;
               background-color: #212121; }
             #wrapper > .section.a #header_bg header #navigation ul li.current_selected_page {
-              color: #FF9933; }
+              color: #33c0ff; }
   #wrapper > .section.b {
     grid-column: 1 / span 3;
     grid-row: auto / span 1;
@@ -144,7 +144,7 @@ footer {
     justify-content: flex-start; }
     footer #left_footer_content > div:not(:first-child):before {
       content: "•";
-      color: #FF9933;
+      color: #33c0ff;
       padding: 0 10px;
       /* or whatever color you prefer */ }
   footer #other_stuff {
@@ -162,7 +162,7 @@ footer {
         footer #other_stuff ul li a:visited {
           color: none; }
         footer #other_stuff ul li a:hover {
-          color: #FF9933; }
+          color: #33c0ff; }
 
 .error_message {
   color: red; }
@@ -174,7 +174,7 @@ footer {
     animation: JUMPY 1.0s ease-in-out alternate infinite; }
 
 #info_section {
-  background-color: #FF9933;
+  background-color: #33c0ff;
   border-radius: 15px 50px; }
 
 .Rtable-cell.Rtable-cell--1of2 {
@@ -239,7 +239,7 @@ footer {
   vertical-align: middle; }
 
 .reference_work:not(:first-child) {
-  border-top: 10px solid #FF9933; }
+  border-top: 10px solid #33c0ff; }
 
 .reference_work .reference_work_thumb {
   width: 100%;
@@ -269,20 +269,21 @@ footer {
     max-width: 530px;
     transition: all 1s; }
     .reference_work .reference_work_title h1 > span {
-      color: #FF9933; }
+      color: #33c0ff;
+      text-transform: none; }
 
 .reference_work:hover {
   cursor: pointer; }
   .reference_work:hover .reference_work_thumb {
-    filter: hue-rotate(300deg); }
+    filter: invert(1); }
     .reference_work:hover .reference_work_thumb .reference_work_description {
       filter: none; }
   .reference_work:hover .reference_work_title {
     background-color: #18181E; }
     .reference_work:hover .reference_work_title h1 {
-      color: #FF9933;
+      color: #33c0ff;
       background-color: #18181E; }
       .reference_work:hover .reference_work_title h1 > span {
-        color: #FF9933; }
+        color: #33c0ff; }
 
 /*# sourceMappingURL=main.css.map */

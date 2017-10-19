@@ -147,21 +147,21 @@ footer {
       color: #FF9933;
       padding: 0 10px;
       /* or whatever color you prefer */ }
-  footer #social_links {
+  footer #other_stuff {
     float: right;
     font-size: 3em; }
-    footer #social_links ul {
+    footer #other_stuff ul {
       margin: 0; }
-      footer #social_links ul li {
+      footer #other_stuff ul li {
         transition: all 1s;
         cursor: pointer;
         list-style: none;
         display: inline-block; }
-        footer #social_links ul li a {
+        footer #other_stuff ul li a {
           color: #18181E; }
-        footer #social_links ul li a:visited {
+        footer #other_stuff ul li a:visited {
           color: none; }
-        footer #social_links ul li a:hover {
+        footer #other_stuff ul li a:hover {
           color: #FF9933; }
 
 .error_message {

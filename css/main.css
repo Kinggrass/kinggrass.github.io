@@ -283,4 +283,31 @@ footer {
         .reference_work:hover .reference_work_title h1 > span {
           color: #33c0ff; }
 
+@media only screen and (min-device-width: 320px) and (max-device-width: 640px) {
+  #wrapper > .section.a {
+    height: 250px; }
+    #wrapper > .section.a #header_bg {
+      background-color: #18181E;
+      height: 100%;
+      clip-path: polygon(150px 195px, 250px 0%, 100% 0%, 100% 100%, 0% 100%);
+      display: flex;
+      align-items: center; }
+  .layout_reference {
+    grid-template-columns: 1fr; }
+    .layout_reference > .section.a {
+      grid-column: 1 / span 1;
+      grid-row: auto / span 1; }
+      .layout_reference > .section.a > #info_section {
+        padding: 16px 0px;
+        padding-left: 50px;
+        margin-left: 0px; }
+    .layout_reference > .section.b {
+      grid-column: 1 / span 1;
+      grid-row: 2 / span 1; }
+    .layout_reference > .section.c {
+      grid-column: 1 / span 1;
+      grid-row: 3 / span 1; }
+  .gallery_nav > div {
+    margin: 0.7em; } }
+
 /*# sourceMappingURL=main.css.map */

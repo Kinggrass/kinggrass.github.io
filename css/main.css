@@ -238,52 +238,49 @@ footer {
   height: 100%;
   vertical-align: middle; }
 
-.reference_work:not(:first-child) {
-  border-top: 10px solid #33c0ff; }
-
-.reference_work .reference_work_thumb {
-  width: 100%;
-  height: 500px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: filter 1s; }
-  .reference_work .reference_work_thumb .reference_work_description {
-    float: right;
-    width: 50%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #FFFFFF; }
-    .reference_work .reference_work_thumb .reference_work_description p {
-      padding-top: 16px; }
-
-.reference_work .reference_work_title {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  background-color: #FFFFFF;
-  transition: background-color 1s; }
-  .reference_work .reference_work_title h1 {
-    margin: 0;
-    flex: 1 0 auto;
-    max-width: 530px;
-    transition: all 1s; }
-    .reference_work .reference_work_title h1 > span {
-      color: #33c0ff;
-      text-transform: none; }
-
-.reference_work:hover {
-  cursor: pointer; }
-  .reference_work:hover .reference_work_thumb {
-    filter: invert(1); }
+.reference_work {
+  transition: box-shadow 1s; }
+  .reference_work:not(:first-child) {
+    border-top: 10px solid #33c0ff; }
+  .reference_work .reference_work_thumb {
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; }
+    .reference_work .reference_work_thumb .reference_work_description {
+      float: right;
+      width: 50%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #FFFFFF; }
+      .reference_work .reference_work_thumb .reference_work_description p {
+        padding-top: 16px; }
+  .reference_work .reference_work_title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    transition: background-color 1s; }
+    .reference_work .reference_work_title h1 {
+      margin: 0;
+      flex: 1 0 auto;
+      max-width: 530px;
+      transition: all 1s; }
+      .reference_work .reference_work_title h1 > span {
+        color: #33c0ff;
+        text-transform: none; }
+  .reference_work:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 50px #33c0ff; }
     .reference_work:hover .reference_work_thumb .reference_work_description {
       filter: none; }
-  .reference_work:hover .reference_work_title {
-    background-color: #18181E; }
-    .reference_work:hover .reference_work_title h1 {
-      color: #33c0ff;
+    .reference_work:hover .reference_work_title {
       background-color: #18181E; }
-      .reference_work:hover .reference_work_title h1 > span {
-        color: #33c0ff; }
+      .reference_work:hover .reference_work_title h1 {
+        color: #33c0ff;
+        background-color: #18181E; }
+        .reference_work:hover .reference_work_title h1 > span {
+          color: #33c0ff; }
 
 /*# sourceMappingURL=main.css.map */

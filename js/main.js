@@ -1,3 +1,14 @@
+$.browser = {};
+  (function () {
+   $.browser.msie = false;
+   $.browser.version = 0;
+   if (navigator.userAgent.match(/MSIE ([0-11]+)\./)) {
+    $.browser.msie = true;
+    $.browser.version = RegExp.$1;
+   }
+})();
+
+
 var slideIndex = 1;
 
 function plusDivs(n) {

@@ -186,7 +186,7 @@ $(document).ready(function () {
     if (detectIE()) {
         $('#wrapper > .section.a #header_bg').css({
             "width": "75%",
-            "float": "right%"
+            "float": "right"
         });
         $('#wrapper > .section.a #header_bg header').css({
             "margin-left": "0px"

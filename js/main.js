@@ -1,41 +1,41 @@
 function detectIE() {
-  var ua = window.navigator.userAgent;
+    var ua = window.navigator.userAgent;
 
-  // Test values; Uncomment to check result …
+    // Test values; Uncomment to check result …
 
-  // IE 10
-  // ua = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)';
-  
-  // IE 11
-  // ua = 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko';
-  
-  // Edge 12 (Spartan)
-  // ua = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36 Edge/12.0';
-  
-  // Edge 13
-  // ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586';
+    // IE 10
+    // ua = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)';
 
-  var msie = ua.indexOf('MSIE ');
-  if (msie > 0) {
-    // IE 10 or older => return version number
-    return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
-  }
+    // IE 11
+    // ua = 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko';
 
-  var trident = ua.indexOf('Trident/');
-  if (trident > 0) {
-    // IE 11 => return version number
-    var rv = ua.indexOf('rv:');
-    return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
-  }
+    // Edge 12 (Spartan)
+    // ua = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36 Edge/12.0';
 
-  var edge = ua.indexOf('Edge/');
-  if (edge > 0) {
-    // Edge (IE 12+) => return version number
-    return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
-  }
+    // Edge 13
+    // ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586';
 
-  // other browser
-  return false;
+    var msie = ua.indexOf('MSIE ');
+    if (msie > 0) {
+        // IE 10 or older => return version number
+        return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+    }
+
+    var trident = ua.indexOf('Trident/');
+    if (trident > 0) {
+        // IE 11 => return version number
+        var rv = ua.indexOf('rv:');
+        return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+    }
+
+    var edge = ua.indexOf('Edge/');
+    if (edge > 0) {
+        // Edge (IE 12+) => return version number
+        return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+    }
+
+    // other browser
+    return false;
 }
 
 
@@ -181,127 +181,133 @@ function setupGallery() {
 
 
 $(document).ready(function () {
-            /* SUBSTITUTE CONTENT ON NAVIAGTION CLICK*/
+    /* SUBSTITUTE CONTENT ON NAVIAGTION CLICK*/
 
-            if (detectIE()) {
-                $('head').append('<style>#wrapper > .section.a# header_bg {width: 75 %; float: right;} #wrapper > .section.a# header_bg header {margin - left: 0 px;} </style>');
-                }
-
-                var contentToLoad = $.urlParam("content"); //LOAD CONTENT AT START OF PAGE
-                var pathToLoad = $.urlParam("path");
-
-                if (!contentToLoad || !pathToLoad) {
-                    loadContent('_include/_content/', 'about_me');
-                } else if (contentToLoad !== "") {
-                    loadContent(pathToLoad, contentToLoad);
-                }
-
-
-
-                /* ######################################## */
-            });
-
-
-        function navigationClick(element) {
-            $aChild = $(element).children("a");
-            $currentContent = $("#main_section").attr("content_name");
-            if ($aChild.attr("contenttoload") && $aChild.attr("contenttoload").length != 0 && $aChild.attr("contenttoload") !== $currentContent) {
-                loadContent("_include/_content/", $aChild.attr("contenttoload"));
-            }
-        }
-        /*
-        $(window).load(function() {
-           $("#navigation > ul > li").click(function (e) { //LOAD CONTENT AT CLICK
-                e.preventDefault();
-                
-            });
+    if (detectIE()) {
+        $('#wrapper > .section.a# header_bg').css({
+            "width": "75%",
+            "float": "right%"
         });
-        */
-        function loadOneReference(index) {
+        $('#wrapper > .section.a #header_bg header').css({
+            "margin-left": "0px"
+        });
+    }
 
-            var $referenceBuild = $('<div contenttoload="reference_' + index + '" id="reference_work_' + index + '" class="reference_work"> <div class="reference_work_title"><h1>Project <span>No.' + index + '</span></h1></div> <div class="reference_work_thumb"><div class="reference_work_description"></div></div> </div>');
+    var contentToLoad = $.urlParam("content"); //LOAD CONTENT AT START OF PAGE
+    var pathToLoad = $.urlParam("path");
 
-            $referenceBuild.click(function (e) { //LOAD CONTENT AT CLICK
+    if (!contentToLoad || !pathToLoad) {
+        loadContent('_include/_content/', 'about_me');
+    } else if (contentToLoad !== "") {
+        loadContent(pathToLoad, contentToLoad);
+    }
+
+
+
+    /* ######################################## */
+});
+
+
+function navigationClick(element) {
+    $aChild = $(element).children("a");
+    $currentContent = $("#main_section").attr("content_name");
+    if ($aChild.attr("contenttoload") && $aChild.attr("contenttoload").length != 0 && $aChild.attr("contenttoload") !== $currentContent) {
+        loadContent("_include/_content/", $aChild.attr("contenttoload"));
+    }
+}
+/*
+$(window).load(function() {
+   $("#navigation > ul > li").click(function (e) { //LOAD CONTENT AT CLICK
+        e.preventDefault();
+        
+    });
+});
+*/
+function loadOneReference(index) {
+
+    var $referenceBuild = $('<div contenttoload="reference_' + index + '" id="reference_work_' + index + '" class="reference_work"> <div class="reference_work_title"><h1>Project <span>No.' + index + '</span></h1></div> <div class="reference_work_thumb"><div class="reference_work_description"></div></div> </div>');
+
+    $referenceBuild.click(function (e) { //LOAD CONTENT AT CLICK
+        $aChild = $(this);
+        $currentContent = $("#main_section").attr("content_name");
+
+        if ($aChild.attr("contenttoload") && $aChild.attr("contenttoload").length != 0 && $aChild.attr("contenttoload") !== $currentContent) {
+            loadContent("_include/_content/_references/", $aChild.attr("contenttoload"));
+        }
+    });
+
+    $referenceBuild.mousedown(function (event) {
+        switch (event.which) {
+            case 2:
+                //alert('Middle mouse button pressed');
                 $aChild = $(this);
-                $currentContent = $("#main_section").attr("content_name");
-
-                if ($aChild.attr("contenttoload") && $aChild.attr("contenttoload").length != 0 && $aChild.attr("contenttoload") !== $currentContent) {
-                    loadContent("_include/_content/_references/", $aChild.attr("contenttoload"));
-                }
-            });
-
-            $referenceBuild.mousedown(function (event) {
-                switch (event.which) {
-                    case 2:
-                        //alert('Middle mouse button pressed');
-                        $aChild = $(this);
-                        console.log("middle click");
-                        var win = window.open('index.html?content=' + $aChild.attr("contenttoload") + '&path=_include/_content/_references/', '_blank');
-                        if (win) {
-                            event.preventDefault();
-                        } else {
-                            //Browser has blocked it
-                            alert('Please allow popups for this website, to open the links with middle click in an new tab.');
-                        }
-                        return false;
-                        break;
-                    default:
-                        //alert('You have a strange mouse');
-                        $(this).attr('target', '_self"');
-                }
-            });
-
-            $("#reference_collection")
-                .append($referenceBuild);
-
-            var currentDestination = "#reference_work_" + index;
-            var currentLoadTarget = "_include/_content/_references/reference_" + index + ".html";
-
-            $('<div/>').load(currentLoadTarget + " .my_gallery:first > img:first", function (response, status, xhr) {
-                if (status == "error") {
-                    $("#reference_collection " + currentDestination).remove();
+                console.log("middle click");
+                var win = window.open('index.html?content=' + $aChild.attr("contenttoload") + '&path=_include/_content/_references/', '_blank');
+                if (win) {
+                    event.preventDefault();
                 } else {
-                    $(currentDestination + " .reference_work_thumb").css('background-image', 'url("' + $(this).children(":first").attr('src') + '")');
+                    //Browser has blocked it
+                    alert('Please allow popups for this website, to open the links with middle click in an new tab.');
+                }
+                return false;
+                break;
+            default:
+                //alert('You have a strange mouse');
+                $(this).attr('target', '_self"');
+        }
+    });
 
-                    $('<div/>').load(currentLoadTarget + " #content_title", function (response, status, xhr) {
-                        if (status == "error") {
+    $("#reference_collection")
+        .append($referenceBuild);
 
-                        } else {
+    var currentDestination = "#reference_work_" + index;
+    var currentLoadTarget = "_include/_content/_references/reference_" + index + ".html";
 
-                            var $titleToAppend = $(this).children('h1').first();
-                            $titleToAppend.removeAttr('id');
+    $('<div/>').load(currentLoadTarget + " .my_gallery:first > img:first", function (response, status, xhr) {
+        if (status == "error") {
+            $("#reference_collection " + currentDestination).remove();
+        } else {
+            $(currentDestination + " .reference_work_thumb").css('background-image', 'url("' + $(this).children(":first").attr('src') + '")');
 
-                            if ($titleToAppend.data('shortdescr')) {
-                                $titleToAppend.text($titleToAppend.data('shortdescr'));
-                            }
-                            $(currentDestination + " .reference_work_title").append($titleToAppend);
-                        }
-                    });
-                    $('<div/>').load(currentLoadTarget + " #description", function (response, status, xhr) {
-                        if (status == "error") {
+            $('<div/>').load(currentLoadTarget + " #content_title", function (response, status, xhr) {
+                if (status == "error") {
 
-                        } else {
+                } else {
 
-                            var $descriptionToAppend = $(this).children('#description').first().html();
+                    var $titleToAppend = $(this).children('h1').first();
+                    $titleToAppend.removeAttr('id');
 
-                            $(currentDestination + " .reference_work_thumb .reference_work_description").append($descriptionToAppend);
-                        }
-                    });
-                    loadOneReference(index + 1);
+                    if ($titleToAppend.data('shortdescr')) {
+                        $titleToAppend.text($titleToAppend.data('shortdescr'));
+                    }
+                    $(currentDestination + " .reference_work_title").append($titleToAppend);
                 }
             });
+            $('<div/>').load(currentLoadTarget + " #description", function (response, status, xhr) {
+                if (status == "error") {
+
+                } else {
+
+                    var $descriptionToAppend = $(this).children('#description').first().html();
+
+                    $(currentDestination + " .reference_work_thumb .reference_work_description").append($descriptionToAppend);
+                }
+            });
+            loadOneReference(index + 1);
         }
+    });
+}
 
-        function loadReferences() {
-            var loadindex = 0;
-            loadOneReference(loadindex);
-        }
+function loadReferences() {
+    var loadindex = 0;
+    loadOneReference(loadindex);
+}
 
-        $(window).on("popstate", function (e) {
-            var contentToLoad = $.urlParam("content"); //LOAD CONTENT AT START OF PAGE
-            var pathToLoad = $.urlParam("path");
+$(window).on("popstate", function (e) {
+    var contentToLoad = $.urlParam("content"); //LOAD CONTENT AT START OF PAGE
+    var pathToLoad = $.urlParam("path");
 
-            if (contentToLoad !== "") {
-                loadContent(pathToLoad, contentToLoad);
-            }
-        });
+    if (contentToLoad !== "") {
+        loadContent(pathToLoad, contentToLoad);
+    }
+});

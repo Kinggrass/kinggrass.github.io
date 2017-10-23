@@ -184,7 +184,7 @@ $(document).ready(function () {
     /* SUBSTITUTE CONTENT ON NAVIAGTION CLICK*/
 
     if (detectIE()) {
-        $('#wrapper > .section.a# header_bg').css({
+        $('#wrapper > .section.a #header_bg').css({
             "width": "75%",
             "float": "right%"
         });

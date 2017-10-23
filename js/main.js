@@ -140,124 +140,127 @@ function setupGallery() {
 
 
 $(document).ready(function () {
-    /* SUBSTITUTE CONTENT ON NAVIAGTION CLICK*/
+            /* SUBSTITUTE CONTENT ON NAVIAGTION CLICK*/
 
-    var contentToLoad = $.urlParam("content"); //LOAD CONTENT AT START OF PAGE
-    var pathToLoad = $.urlParam("path");
+            if ($.browser.msie) {
+                $('head').append('<style>#wrapper > .section.a# header_bg {width: 75 %; float: right;} #wrapper > .section.a# header_bg header {margin - left: 0 px;} </style>');
+                }
 
-    if(!contentToLoad || !pathToLoad){
-        loadContent('_include/_content/', 'about_me');
-    }
-    else if(contentToLoad !== "") {
-        loadContent(pathToLoad, contentToLoad);
-    }
+                var contentToLoad = $.urlParam("content"); //LOAD CONTENT AT START OF PAGE
+                var pathToLoad = $.urlParam("path");
 
-
-
-    /* ######################################## */
-});
+                if (!contentToLoad || !pathToLoad) {
+                    loadContent('_include/_content/', 'about_me');
+                } else if (contentToLoad !== "") {
+                    loadContent(pathToLoad, contentToLoad);
+                }
 
 
-function navigationClick(element) {
-    $aChild = $(element).children("a");
-    $currentContent = $("#main_section").attr("content_name");
-    if ($aChild.attr("contenttoload") && $aChild.attr("contenttoload").length != 0 && $aChild.attr("contenttoload") !== $currentContent) {
-        loadContent("_include/_content/", $aChild.attr("contenttoload"));
-    }
-}
-/*
-$(window).load(function() {
-   $("#navigation > ul > li").click(function (e) { //LOAD CONTENT AT CLICK
-        e.preventDefault();
-        
-    });
-});
-*/
-function loadOneReference(index) {
 
-    var $referenceBuild = $('<div contenttoload="reference_' + index + '" id="reference_work_' + index + '" class="reference_work"> <div class="reference_work_title"><h1>Project <span>No.' + index + '</span></h1></div> <div class="reference_work_thumb"><div class="reference_work_description"></div></div> </div>');
+                /* ######################################## */
+            });
 
-    $referenceBuild.click(function (e) { //LOAD CONTENT AT CLICK
-        $aChild = $(this);
-        $currentContent = $("#main_section").attr("content_name");
 
-        if ($aChild.attr("contenttoload") && $aChild.attr("contenttoload").length != 0 && $aChild.attr("contenttoload") !== $currentContent) {
-            loadContent("_include/_content/_references/", $aChild.attr("contenttoload"));
+        function navigationClick(element) {
+            $aChild = $(element).children("a");
+            $currentContent = $("#main_section").attr("content_name");
+            if ($aChild.attr("contenttoload") && $aChild.attr("contenttoload").length != 0 && $aChild.attr("contenttoload") !== $currentContent) {
+                loadContent("_include/_content/", $aChild.attr("contenttoload"));
+            }
         }
-    });
+        /*
+        $(window).load(function() {
+           $("#navigation > ul > li").click(function (e) { //LOAD CONTENT AT CLICK
+                e.preventDefault();
+                
+            });
+        });
+        */
+        function loadOneReference(index) {
 
-    $referenceBuild.mousedown(function (event) {
-        switch (event.which) {
-            case 2:
-                //alert('Middle mouse button pressed');
+            var $referenceBuild = $('<div contenttoload="reference_' + index + '" id="reference_work_' + index + '" class="reference_work"> <div class="reference_work_title"><h1>Project <span>No.' + index + '</span></h1></div> <div class="reference_work_thumb"><div class="reference_work_description"></div></div> </div>');
+
+            $referenceBuild.click(function (e) { //LOAD CONTENT AT CLICK
                 $aChild = $(this);
-                console.log("middle click");
-                var win = window.open('index.html?content=' + $aChild.attr("contenttoload") + '&path=_include/_content/_references/', '_blank');
-                if (win) {
-                    event.preventDefault();
-                } else {
-                    //Browser has blocked it
-                    alert('Please allow popups for this website, to open the links with middle click in an new tab.');
-                }
-                return false;
-                break;
-            default:
-                //alert('You have a strange mouse');
-                $(this).attr('target', '_self"');
-        }
-    });
+                $currentContent = $("#main_section").attr("content_name");
 
-    $("#reference_collection")
-        .append($referenceBuild);
-
-    var currentDestination = "#reference_work_" + index;
-    var currentLoadTarget = "_include/_content/_references/reference_" + index + ".html";
-
-    $('<div/>').load(currentLoadTarget + " .my_gallery:first > img:first", function (response, status, xhr) {
-        if (status == "error") {
-            $("#reference_collection " + currentDestination).remove();
-        } else {
-            $(currentDestination + " .reference_work_thumb").css('background-image', 'url("' + $(this).children(":first").attr('src') + '")');
-
-            $('<div/>').load(currentLoadTarget + " #content_title", function (response, status, xhr) {
-                if (status == "error") {
-
-                } else {
-
-                    var $titleToAppend = $(this).children('h1').first();
-                    $titleToAppend.removeAttr('id');
-
-                    if ($titleToAppend.data('shortdescr')) {
-                        $titleToAppend.text($titleToAppend.data('shortdescr'));
-                    }
-                    $(currentDestination + " .reference_work_title").append($titleToAppend);
+                if ($aChild.attr("contenttoload") && $aChild.attr("contenttoload").length != 0 && $aChild.attr("contenttoload") !== $currentContent) {
+                    loadContent("_include/_content/_references/", $aChild.attr("contenttoload"));
                 }
             });
-            $('<div/>').load(currentLoadTarget + " #description", function (response, status, xhr) {
-                if (status == "error") {
 
-                } else {
-
-                    var $descriptionToAppend = $(this).children('#description').first().html();
-
-                    $(currentDestination + " .reference_work_thumb .reference_work_description").append($descriptionToAppend);
+            $referenceBuild.mousedown(function (event) {
+                switch (event.which) {
+                    case 2:
+                        //alert('Middle mouse button pressed');
+                        $aChild = $(this);
+                        console.log("middle click");
+                        var win = window.open('index.html?content=' + $aChild.attr("contenttoload") + '&path=_include/_content/_references/', '_blank');
+                        if (win) {
+                            event.preventDefault();
+                        } else {
+                            //Browser has blocked it
+                            alert('Please allow popups for this website, to open the links with middle click in an new tab.');
+                        }
+                        return false;
+                        break;
+                    default:
+                        //alert('You have a strange mouse');
+                        $(this).attr('target', '_self"');
                 }
             });
-            loadOneReference(index + 1);
+
+            $("#reference_collection")
+                .append($referenceBuild);
+
+            var currentDestination = "#reference_work_" + index;
+            var currentLoadTarget = "_include/_content/_references/reference_" + index + ".html";
+
+            $('<div/>').load(currentLoadTarget + " .my_gallery:first > img:first", function (response, status, xhr) {
+                if (status == "error") {
+                    $("#reference_collection " + currentDestination).remove();
+                } else {
+                    $(currentDestination + " .reference_work_thumb").css('background-image', 'url("' + $(this).children(":first").attr('src') + '")');
+
+                    $('<div/>').load(currentLoadTarget + " #content_title", function (response, status, xhr) {
+                        if (status == "error") {
+
+                        } else {
+
+                            var $titleToAppend = $(this).children('h1').first();
+                            $titleToAppend.removeAttr('id');
+
+                            if ($titleToAppend.data('shortdescr')) {
+                                $titleToAppend.text($titleToAppend.data('shortdescr'));
+                            }
+                            $(currentDestination + " .reference_work_title").append($titleToAppend);
+                        }
+                    });
+                    $('<div/>').load(currentLoadTarget + " #description", function (response, status, xhr) {
+                        if (status == "error") {
+
+                        } else {
+
+                            var $descriptionToAppend = $(this).children('#description').first().html();
+
+                            $(currentDestination + " .reference_work_thumb .reference_work_description").append($descriptionToAppend);
+                        }
+                    });
+                    loadOneReference(index + 1);
+                }
+            });
         }
-    });
-}
 
-function loadReferences() {
-    var loadindex = 0;
-    loadOneReference(loadindex);
-}
+        function loadReferences() {
+            var loadindex = 0;
+            loadOneReference(loadindex);
+        }
 
-$(window).on("popstate", function (e) {
-    var contentToLoad = $.urlParam("content"); //LOAD CONTENT AT START OF PAGE
-    var pathToLoad = $.urlParam("path");
+        $(window).on("popstate", function (e) {
+            var contentToLoad = $.urlParam("content"); //LOAD CONTENT AT START OF PAGE
+            var pathToLoad = $.urlParam("path");
 
-    if (contentToLoad !== "") {
-        loadContent(pathToLoad, contentToLoad);
-    }
-});
+            if (contentToLoad !== "") {
+                loadContent(pathToLoad, contentToLoad);
+            }
+        });

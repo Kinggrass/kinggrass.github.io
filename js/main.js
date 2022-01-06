@@ -170,12 +170,63 @@ function setupGallery() {
 
             $oneGallery.children(".mySlides").each(function (index, value) {
                 var $gallerynav = $oneGallery.find(".gallery_nav");
-                $gallerynav.append('<div ' + (index === 0 ? 'class="selected_img"' : '') + ' onclick="currentDiv(' + (index + 1) + ', this)"><span class="helper"></span><img class="gallery_thumb" src="' + $(this).attr('src') + '"></div>');
+                var $video = $(this).children('video');
+                var isVideo = $video[0] != undefined;
+
+                if(isVideo){
+                    getVideoCover($video[0]).then(r => {
+                        var objectURL = URL.createObjectURL(r);
+                        $gallerynav.append('<div ' + (index === 0 ? 'class="selected_img"' : '') + ' onclick="currentDiv(' + (index + 1) + ', this)"><span class="helper video_thumb"></span><img class="gallery_thumb" src="' + objectURL + '"><i class="far fa-play-circle playIcon"></i></div>');
+                    });
+                } else {
+                    $gallerynav.append('<div ' + (index === 0 ? 'class="selected_img"' : '') + ' onclick="currentDiv(' + (index + 1) + ', this)"><span class="helper"></span><img class="gallery_thumb" src="' + $(this).attr('src') + '"></div>');
+                }
             });
         });
         slideIndex = 1;
         currentDiv(slideIndex, null);
     }
+}
+
+function getVideoCover(videoPlayer) {
+    return new Promise((resolve, reject) => {
+        // load the file to a video player
+        videoPlayer.load();
+        videoPlayer.addEventListener('error', (ex) => {
+            reject("error when loading video file", ex);
+        });
+        // load metadata of the video to get video duration and dimensions
+        videoPlayer.addEventListener('loadedmetadata', () => {
+
+            // delay seeking or else 'seeked' event won't fire on Safari
+            setTimeout(() => {
+              videoPlayer.currentTime = videoPlayer.duration / 2.0;
+            }, 200);
+            // extract video thumbnail once seeking is complete
+
+            var action = () => {
+                // define a canvas to have the same dimension as the video
+                const canvas = document.createElement("canvas");
+                canvas.width = videoPlayer.videoWidth;
+                canvas.height = videoPlayer.videoHeight;
+                // draw the video frame to canvas
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(videoPlayer, 0, 0, canvas.width, canvas.height);
+                videoPlayer.currentTime = 0;
+                videoPlayer.removeEventListener('seeked', action);
+                // return the canvas image as a blob
+                ctx.canvas.toBlob(
+                    blob => {
+                        resolve(blob);
+                    },
+                    "image/jpeg",
+                    0.75 /* quality */
+                );
+            };
+
+            videoPlayer.addEventListener('seeked', action);
+        });
+    });
 }
 
 
@@ -224,6 +275,10 @@ $(window).load(function() {
 });
 */
 function loadOneReference(index) {
+
+    if(index < 0){
+        return;
+    }
 
     var $referenceBuild = $('<div contenttoload="reference_' + index + '" id="reference_work_' + index + '" class="reference_work"> <div class="reference_work_title"><h1>Project <span>No.' + index + '</span></h1></div> <div class="reference_work_thumb"><div class="reference_work_description"></div></div> </div>');
 
@@ -293,13 +348,13 @@ function loadOneReference(index) {
                     $(currentDestination + " .reference_work_thumb .reference_work_description").append($descriptionToAppend);
                 }
             });
-            loadOneReference(index + 1);
+            loadOneReference(index - 1);
         }
     });
 }
 
 function loadReferences() {
-    var loadindex = 0;
+    var loadindex = 14;
     loadOneReference(loadindex);
 }
 
